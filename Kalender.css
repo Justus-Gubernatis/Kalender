@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    background-color:rgb(165, 221, 255);
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+.Samstag {
+    color: blue;
+}
+
+.Sonntag {
+    color: red;
+}
+
+h1 {
+    color: rgb(47, 189, 236);
+}
+
+table {
+    table-layout: auto;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 2px solid #00ccff;
+}
+
+
