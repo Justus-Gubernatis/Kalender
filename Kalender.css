@@ -1,10 +1,14 @@
 body {
     text-align: center;
-    background-color:rgb(165, 221, 255);
-    color: black;
+    background-color:rgb(147, 215, 255);
+    color: rgb(0, 96, 193);
     font-family: Arial, sans-serif;
 }
 
+.wochentage {
+    background-color: rgb(94, 207, 255);
+    color: rgba(251, 255, 0, 0.922);
+}
 .Samstag {
     color: blue;
 }
@@ -14,18 +18,41 @@ body {
 }
 
 h1 {
-    color: rgb(47, 189, 236);
+    color: rgb(219, 88, 255);
 }
 
 table {
-    table-layout: auto;
+
     border-collapse: collapse;
     text-align: center;
     margin: 0 auto;
 }
 
-th, td {
-    border: 2px solid #00ccff;
+.Heute {
+    background-color: rgb(32, 195, 255);
+    color: rgb(246, 255, 0);
 }
 
+th:hover, td:hover {
+    background-color:rgb(0, 187, 255);
+    color: rgb(255, 93, 231);
+}
+
+th, td {
+    min-width: 90px;
+    border: 2px solid #00ccff;
+    text-align: center;
+}
+
+h3{
+    color: yellow;
+}
+
+h2 {
+    color: rgb(255, 146, 21)
+}
+
+ul{
+    list-style-position: inside;
+}
 
