@@ -8,49 +8,97 @@ body {
     font-weight: 800;
 }
 
+
 .glass {
     width: 80%;
     max-width: 800px;
     margin: 30px auto;
     padding: 20px;
-
     box-sizing: border-box;
-
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
+
 
 .titel-box {
     width: fit-content;
     margin: 10px auto;
-    padding: 10px 50px;
+    padding: 10px 25px;
 
     background: transparent;
-
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
 }
+
+
+.titel-box h1,
+.titel-box h2 {
+    margin: 0;
+}
+
+
+.titel-box h1 {
+    color: rgb(219, 88, 255);
+}
+
+
+.titel-box h2 {
+    color: #00ccff;
+}
+
+
+.titel-box button {
+    border: none;
+    background: transparent;
+
+    color: rgb(103, 207, 255);
+    font-family: "Nunito", sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+.titel-box button:hover {
+    color: rgb(255, 93, 231);
+}
+
 
 .wochentage {
     background-color: rgb(94, 207, 255);
     color: rgba(251, 255, 0, 0.922);
 }
+
+
 .Samstag {
     color: blue;
 }
+
 
 .Sonntag {
     color: red;
 }
 
-h1 {
-    color: rgb(219, 88, 255);
+
+.Heute {
+    background-color: rgb(32, 195, 255);
+    color: rgb(246, 255, 0);
 }
+
+
+h3 {
+    color: yellow;
+}
+
 
 table {
     width: 100%;
@@ -60,51 +108,46 @@ table {
     margin: 0 auto;
 }
 
-.Heute {
-    background-color: rgb(32, 195, 255);
-    color: rgb(246, 255, 0);
-}
 
-th:hover, td:hover {
-    background-color:rgb(0, 187, 255);
-    color: rgb(255, 93, 231);
-}
-
-th, td {
+th,
+td {
     width: calc(100% / 7);
     border: none;
     text-align: center;
 }
 
-h3{
-    color: yellow;
+
+th:hover,
+td:hover {
+    background-color: rgb(0, 187, 255);
+    color: rgb(255, 93, 231);
 }
+
 
 #Punkten {
     color: rgb(195, 56, 255);
-    font-weight: 800;
     font-size: 18px;
 }
+
 
 #HE {
     background: rgba(0, 229, 254, 0.25);
 }
 
-h2 {
-    color: #00ccff;
-}
 
-ul{
+ul {
     list-style-position: inside;
 }
+
 
 @media (max-width: 700px) {
 
     table {
-        width: 77vw;
+        width: 105vw;
         margin: 0 auto;
         position: relative;
         left: 50%;
         transform: translateX(-50%);
     }
+
 }

@@ -1,4 +1,4 @@
-let monate = [
+const monate = [
     "Januar",
     "Februar",
     "März",
@@ -13,112 +13,127 @@ let monate = [
     "Dezember"
 ];
 
-// Erstellung eines Arrays mit allen Monaten des Jahres.
-
+const wochentage = [
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+    "Sonntag"
+];
 
 let monat = 7;
 let jahr = 2026;
 
-// Festlegung des ausgewählten Monats und Jahres.
-// Auswahl von August 2026.
+const jahretitel = document.querySelector("#jahr");
+const monattitel = document.querySelector("#monat");
+const tabelle = document.querySelector("#kalender");
+const jahrZurueck = document.querySelector("#jahrZurueck");
+const jahrVor = document.querySelector("#jahrVor");
+const monatZurueck = document.querySelector("#monatZurueck");
+const monatVor = document.querySelector("#monatVor");
 
+function kalenderErstellen() {
 
-let jahretitel = document.querySelector("#jahr");
-let monattitel = document.querySelector("#monat");
+    tabelle.innerHTML = "";
 
-// Suche der HTML-Elemente mit den IDs "jahr" und "monat".
+    jahretitel.textContent = "Kalender " + jahr;
+    monattitel.textContent = monate[monat] + " " + (monat + 1);
+    document.title = "Kalender " + monate[monat] + " " + jahr;
 
+    const kopfzeile = tabelle.insertRow();
 
-jahretitel.textContent = "Kalender " + jahr;
-monattitel.textContent = monate[monat] + " " + (monat + 1);
+    for (let i = 0; i < wochentage.length; i++) {
 
-// Änderung der Texte der beiden HTML-Elemente.
-// Anzeige des ausgewählten Jahres und Monats.
+        const zelle = document.createElement("th");
+        zelle.textContent = wochentage[i];
+        kopfzeile.appendChild(zelle);
 
+        if (i === 5) {
+            zelle.classList.add("Samstag");
+        }
 
-let tage = new Date(jahr, monat + 1, 0).getDate();
-
-// Berechnung der Anzahl der Tage des ausgewählten Monats.
-
-
-let ersterTag = new Date(jahr, monat, 1).getDay();
-
-// Berechnung des Wochentags des ersten Tages des Monats.
-
-
-if (ersterTag === 0) {
-    ersterTag = 7;
-}
-
-// Änderung von Sonntag von 0 auf 7,
-// damit die Woche bei Montag beginnt und bei Sonntag endet.
-
-
-let tabelle = document.querySelector("table");
-
-// Suche der Kalender-Tabelle im HTML.
-
-
-while (tabelle.rows.length > 1) {
-    tabelle.deleteRow(1);
-}
-
-// Entfernung der alten Tageszeilen aus dem HTML,
-// damit JavaScript die Kalendertage selbst erstellen kann.
-
-
-let zeile = tabelle.insertRow();
-
-// Erstellung einer neuen Zeile für die Kalendertage.
-
-
-for (let i = 1; i < ersterTag; i++) {
-    zeile.insertCell();
-}
-
-// Erstellung leerer Zellen vor dem ersten Tag,
-// damit der erste Tag an der richtigen Position steht.
-
-
-let tag = 1;
-
-// Festlegung des ersten Kalendertages auf 1.
-
-
-while (tag <= tage) {
-
-    if (zeile.cells.length === 7) {
-        zeile = tabelle.insertRow();
+        if (i === 6) {
+            zelle.classList.add("Sonntag");
+        }
     }
 
-    // Erstellung einer neuen Zeile, wenn die aktuelle Zeile bereits 7 Zellen hat.
+    const tage = new Date(jahr, monat + 1, 0).getDate();
 
+    let ersterTag = new Date(jahr, monat, 1).getDay();
 
-    let zelle = zeile.insertCell();
-    zelle.textContent = tag;
-
-    // Erstellung einer neuen Zelle und Einfügen des aktuellen Tages.
-
-
-    let wochentag = (ersterTag + tag - 2) % 7 + 1;
-
-    // Berechnung des Wochentags für den aktuellen Tag.
-
-
-    if (wochentag === 6) {
-        zelle.classList.add("Samstag");
+    if (ersterTag === 0) {
+        ersterTag = 7;
     }
 
-    if (wochentag === 7) {
-        zelle.classList.add("Sonntag");
+    const heute = new Date();
+
+    let zeile = tabelle.insertRow();
+
+    for (let i = 1; i < ersterTag; i++) {
+        zeile.insertCell();
     }
 
-    // Hinzufügen der CSS-Klassen für Samstag und Sonntag.
+    for (let tag = 1; tag <= tage; tag++) {
 
+        if (zeile.cells.length === 7) {
+            zeile = tabelle.insertRow();
+        }
 
-    tag++;
+        const zelle = zeile.insertCell();
+        zelle.textContent = tag;
 
-    // Erhöhung der Tagesnummer um 1.
+        const wochentag = (ersterTag + tag - 2) % 7 + 1;
+
+        if (wochentag === 6) {
+            zelle.classList.add("Samstag");
+        }
+
+        if (wochentag === 7) {
+            zelle.classList.add("Sonntag");
+        }
+
+        if (
+            tag === heute.getDate() &&
+            monat === heute.getMonth() &&
+            jahr === heute.getFullYear()
+        ) {
+            zelle.classList.add("Heute");
+        }
+    }
 }
 
-.Heute {
+jahrZurueck.addEventListener("click", function () {
+    jahr--;
+    kalenderErstellen();
+});
+
+jahrVor.addEventListener("click", function () {
+    jahr++;
+    kalenderErstellen();
+});
+
+monatZurueck.addEventListener("click", function () {
+    monat--;
+
+    if (monat < 0) {
+        monat = 11;
+        jahr--;
+    }
+
+    kalenderErstellen();
+});
+
+monatVor.addEventListener("click", function () {
+    monat++;
+
+    if (monat > 11) {
+        monat = 0;
+        jahr++;
+    }
+
+    kalenderErstellen();
+});
+
+kalenderErstellen();
