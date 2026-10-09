@@ -1,96 +1,75 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-
-    <title>Kalender</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender und Panzer</title>
     <link rel="stylesheet" href="kalender_style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <header>
+        <h1>Kalender und Panzer</h1>
+    </header>
 
-    <section class="glass">
+    <main>
+        <!-- Kalender buttons -->
+        <section class="fenster" id="kalenderBereich">
+            <h2>Kalender</h2>
 
-        <div class="titel-box">
+            <div class="navigation">
+                <button id="jahrZurück" type="button">←</button>
+                <h3 id="jahr">Jahr</h3>
+                <button id="jahrVor" type="button">→</button>
+            </div>
 
-            <button id="jahrZurueck">←</button>
+            <div class="navigation">
+                <button id="monatZurück" type="button">←</button>
+                <h3 id="monat">Monat</h3>
+                <button id="monatVor" type="button">→</button>
+            </div>
 
-            <h1 id="jahr"></h1>
+            <!-- JavaScript für Kalender -->
+            <table id="kalender"></table>
+        </section>
 
-            <button id="jahrVor">→</button>
+        <!-- Panzerbereich -->
+        <section class="fenster" id="panzerBereich">
+            <!-- Panzerbild und info -->
+            <section id="panzerBilder">
+                <h2>Panzerbilder</h2>
+                <div class="panzerNavigation">
 
-        </div>
+                    <button id="panzerZurück" type="button" aria-label="Vorheriger Panzer">←</button>
+                    
+                    <figure>
+                        <img id="panzerBild" alt="Foto des ausgewählten Panzers" hidden>
+                        <p id="bildPlatzhalter">Hier erscheint später das Panzerbild.</p>
+                        <figcaption id="panzerName">Name des Panzers</figcaption>
+                    </figure>
+                    
+                    <button id="panzerVor" type="button" aria-label="Next Panzer">→</button>
+                
+                </div>
+            </section>
 
+            <!-- Technische Daten des Panzers -->
+            <section id="panzerInfo">
+                <h2>Technische Daten</h2>
+                <dl>
+                    <div><dt>Land</dt><dd id="land">-</dd></div>
+                    <div><dt>Panzerung Turm (Front / Seite / Heck)</dt><dd id="turmPanzerung">-</dd></div>
+                    <div><dt>Panzerung Wanne (Front / Seite / Heck)</dt><dd id="wannenPanzerung">-</dd></div>
+                    <div><dt>Geschwindigkeit (max.)</dt><dd id="geschwindigkeit">-</dd></div>
+                    <div><dt>Motorleistung</dt><dd id="motorleistung">-</dd></div>
+                    <div><dt>Gewicht</dt><dd id="gewicht">-</dd></div>
+                    <div><dt>Kaliber</dt><dd id="kaliber">-</dd></div>
+                    <div><dt>Baujahr</dt><dd id="baujahr">-</dd></div>
+                    <div><dt>Maximale Durchschlagsleistung</dt><dd id="durchschlag">-</dd></div>
+                </dl>
+            </section>
+        </section>
+    </main>
 
-        <div class="titel-box">
-
-            <button id="monatZurueck">←</button>
-
-            <h2 id="monat"></h2>
-
-            <button id="monatVor">→</button>
-
-        </div>
-
-
-        <table id="kalender"></table>
-
-    </section>
-
-
-    <section class="glass">
-
-        <h3>Hallöchen, mein Sternchen, hier ist dein Kalender für 2026.</h3>
-
-        <img
-            src="https://img-16.stickers.cloud/packs/f28f3014-7ffe-4e15-9b69-d93b3b4cad1d/webp/61b71213-643f-4b6f-8fee-9190081c1a99.webp"
-            alt="Bild von der Erde"
-            width="500">
-
-    </section>
-
-
-    <section class="glass" id="HE">
-
-        <h2>Historische Ereignisse im August</h2>
-
-        <ul id="Punkten">
-
-            <li>
-                <strong>6. August 1945:</strong>
-                Die USA warfen eine Atombombe auf Hiroshima in Japan ab.
-            </li>
-
-            <li>
-                <strong>9. August 1945:</strong>
-                Die USA warfen eine Atombombe auf Nagasaki in Japan ab.
-            </li>
-
-            <li>
-                <strong>13. August 1961:</strong>
-                In Berlin begann der Bau der Berliner Mauer.
-            </li>
-
-            <li>
-                <strong>28. August 1963:</strong>
-                Martin Luther King Jr. hielt seine berühmte Rede „I Have a Dream“ in Washington, D.C.
-            </li>
-
-        </ul>
-
-    </section>
-
-
-    <script src="kalender_script.js"></script>
-
+    <script src="kalender_script.js" defer></script>
 </body>
-
 </html>
