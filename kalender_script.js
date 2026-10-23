@@ -1,19 +1,14 @@
-const monate = [
-    "Januar",
-    "Februar",
-    "März",
-    "April",
-    "Mai",
-    "Juni",
-    "Juli",
-    "August",
-    "September",
-    "Oktober",
-    "November",
-    "Dezember"
-];
-
-const wochentage = [
+//Declarationen der Variablen
+    //vergiss nicht: monaten in JavaScript = 0-11
+    //vergiss nicht: Tage in JavaScript = Sonntag = 0, Montag = 1, Dienstag = 2, Mittwoch = 3, Donnerstag = 4, Freitag = 5, Samstag = 6
+    const heute = new Date();
+    console.log(heute);
+    //die posicion des wochentage is von 0-6. sonntag is 0 und montag is 1. % ist die reste.
+    console.log((heute.getDay() + 6) % 7);
+    console.log(heute.getMonth() + 1);
+    console.log(heute.getDate("Brot"));
+//Java Script Code
+    const wochentage = [
     "Montag",
     "Dienstag",
     "Mittwoch",
@@ -21,119 +16,37 @@ const wochentage = [
     "Freitag",
     "Samstag",
     "Sonntag"
-];
+    ];
 
-let monat = 7;
-let jahr = 2026;
+//Sandbox Testing
+    console.log("JavaScript funciona");
+    console.log("probando, testing");
+    let username = "Justus";
+    console.log("was geht ab " + username);
 
-const jahretitel = document.querySelector("#jahr");
-const monattitel = document.querySelector("#monat");
-const tabelle = document.querySelector("#kalender");
-const jahrZurueck = document.querySelector("#jahrZurueck");
-const jahrVor = document.querySelector("#jahrVor");
-const monatZurueck = document.querySelector("#monatZurueck");
-const monatVor = document.querySelector("#monatVor");
+    //2 types of variables mit mehr als einem Wert
 
-function kalenderErstellen() {
+        //Array Testing (liste)
+            let person = [ "Justus", 24, true ];
+            console.log(person[0]);
+            console.log(person[1]);
+            console.log(person[2]);
 
-    tabelle.innerHTML = "";
+        //Object Testing
+            let person2 = {
+                name: "Federico",
+                alter: 24,
+                istStudent: true
+            };
+            console.log(person2.name);
+            console.log(person2.alter);
+            console.log(person2.istStudent);
 
-    jahretitel.textContent = "Kalender " + jahr;
-    monattitel.textContent = monate[monat] + " " + (monat + 1);
-    document.title = "Kalender " + monate[monat] + " " + jahr;
+    //vergiss nicht die jahr zurückzusetzen, sonst wird es nicht richtig angezeigt
+    document.getElementsByClassName("beispiel1")[0].textContent = "bombe";
+    document.getElementsByClassName("beispiel1")[1].textContent = "bombe";
+    document.getElementById("monat").textContent = "Oktober";
 
-    const kopfzeile = tabelle.insertRow();
+    let jahr = document.getElementsByClassName("jahr");
 
-    for (let i = 0; i < wochentage.length; i++) {
-
-        const zelle = document.createElement("th");
-        zelle.textContent = wochentage[i];
-        kopfzeile.appendChild(zelle);
-
-        if (i === 5) {
-            zelle.classList.add("Samstag");
-        }
-
-        if (i === 6) {
-            zelle.classList.add("Sonntag");
-        }
-    }
-
-    const tage = new Date(jahr, monat + 1, 0).getDate();
-
-    let ersterTag = new Date(jahr, monat, 1).getDay();
-
-    if (ersterTag === 0) {
-        ersterTag = 7;
-    }
-
-    const heute = new Date();
-
-    let zeile = tabelle.insertRow();
-
-    for (let i = 1; i < ersterTag; i++) {
-        zeile.insertCell();
-    }
-
-    for (let tag = 1; tag <= tage; tag++) {
-
-        if (zeile.cells.length === 7) {
-            zeile = tabelle.insertRow();
-        }
-
-        const zelle = zeile.insertCell();
-        zelle.textContent = tag;
-
-        const wochentag = (ersterTag + tag - 2) % 7 + 1;
-
-        if (wochentag === 6) {
-            zelle.classList.add("Samstag");
-        }
-
-        if (wochentag === 7) {
-            zelle.classList.add("Sonntag");
-        }
-
-        if (
-            tag === heute.getDate() &&
-            monat === heute.getMonth() &&
-            jahr === heute.getFullYear()
-        ) {
-            zelle.classList.add("Heute");
-        }
-    }
-}
-
-jahrZurueck.addEventListener("click", function () {
-    jahr--;
-    kalenderErstellen();
-});
-
-jahrVor.addEventListener("click", function () {
-    jahr++;
-    kalenderErstellen();
-});
-
-monatZurueck.addEventListener("click", function () {
-    monat--;
-
-    if (monat < 0) {
-        monat = 11;
-        jahr--;
-    }
-
-    kalenderErstellen();
-});
-
-monatVor.addEventListener("click", function () {
-    monat++;
-
-    if (monat > 11) {
-        monat = 0;
-        jahr++;
-    }
-
-    kalenderErstellen();
-});
-
-kalenderErstellen();
+    jahr.textContent = "2027";

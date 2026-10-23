@@ -5,50 +5,103 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Kalender</title>
-
+    <title>Kalender August 2026</title>
+    
+    <!-- Verbindung mit CSS (Style)-->
     <link rel="stylesheet" href="kalender_style.css">
-
+    <!-- Verbindung mit Google Fonts (Words Style)-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
     <section class="glass">
 
-        <div class="titel-box">
-
-            <button id="jahrZurueck">←</button>
-
-            <h1 id="jahr"></h1>
-
-            <button id="jahrVor">→</button>
-
-        </div>
+        <h1 class="titel-box"><span id="monat">August</span> <span class="jahr">2026</span></h1>
 
 
-        <div class="titel-box">
+        <table id="kalender">
+            <tr class="wochentage">
+                <th>Montag</th>
+                <th>Dienstag</th>
+                <th>Mittwoch</th>
+                <th>Donnerstag</th>
+                <th>Freitag</th>
+                <th class="samstag">Samstag</th>
+                <th class="sonntag">Sonntag</th>
+            </tr>
 
-            <button id="monatZurueck">←</button>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="samstag">1</td>
+                <td class="sonntag">2</td>
+            </tr>
 
-            <h2 id="monat"></h2>
+            <tr>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td class="samstag">8</td>
+                <td class="sonntag">9</td>
+            </tr>
 
-            <button id="monatVor">→</button>
+            <tr>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td class="samstag">15</td>
+                <td class="sonntag">16</td>
+            </tr>
 
-        </div>
+            <tr>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td class="samstag">22</td>
+                <td class="sonntag">23</td>
+            </tr>
 
+            <tr>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+                <td>28</td>
+                <td class="samstag">29</td>
+                <td class="sonntag">30</td>
+            </tr>
 
-        <table id="kalender"></table>
+            <tr>
+                <td>31</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="samstag"></td>
+                <td class="sonntag"></td>
+            </tr>
+        
+        </table>
 
     </section>
 
 
     <section class="glass">
 
-        <h3>Hallöchen, mein Sternchen, hier ist dein Kalender für 2026.</h3>
+        <h3>Hallöchen, mein Sternchen, hier ist dein Kalender für <span class="jahr">2026</span>.</h3>
 
         <img
             src="https://img-16.stickers.cloud/packs/f28f3014-7ffe-4e15-9b69-d93b3b4cad1d/webp/61b71213-643f-4b6f-8fee-9190081c1a99.webp"
@@ -66,12 +119,12 @@
 
             <li>
                 <strong>6. August 1945:</strong>
-                Die USA warfen eine Atombombe auf Hiroshima in Japan ab.
+                Die USA warfen eine <span class="beispiel1">Atombombe</span> auf Hiroshima in Japan ab.
             </li>
 
             <li>
                 <strong>9. August 1945:</strong>
-                Die USA warfen eine Atombombe auf Nagasaki in Japan ab.
+                Die USA warfen eine <span class="beispiel1">Atombombe</span> auf Nagasaki in Japan ab.
             </li>
 
             <li>
@@ -88,7 +141,7 @@
 
     </section>
 
-
+    <!-- JavaScript -->
     <script src="kalender_script.js"></script>
 
 </body>
