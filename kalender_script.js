@@ -1,52 +1,95 @@
-//Declarationen der Variablen
-    //vergiss nicht: monaten in JavaScript = 0-11
-    //vergiss nicht: Tage in JavaScript = Sonntag = 0, Montag = 1, Dienstag = 2, Mittwoch = 3, Donnerstag = 4, Freitag = 5, Samstag = 6
-    const heute = new Date();
-    console.log(heute);
-    //die posicion des wochentage is von 0-6. sonntag is 0 und montag is 1. % ist die reste.
-    console.log((heute.getDay() + 6) % 7);
-    console.log(heute.getMonth() + 1);
-    console.log(heute.getDate("Brot"));
-//Java Script Code
-    const wochentage = [
-    "Montag",
-    "Dienstag",
-    "Mittwoch",
-    "Donnerstag",
-    "Freitag",
-    "Samstag",
-    "Sonntag"
-    ];
+//get the info Time from PC
 
-//Sandbox Testing
-    console.log("JavaScript funciona");
-    console.log("probando, testing");
-    let username = "Justus";
-    console.log("was geht ab " + username);
+const today = new Date();
+const day = today.getDate();
+const month = today.getMonth() + 1;
+const year = today.getFullYear(); //line 19
 
-    //2 types of variables mit mehr als einem Wert
 
-        //Array Testing (liste)
-            let person = [ "Justus", 24, true ];
-            console.log(person[0]);
-            console.log(person[1]);
-            console.log(person[2]);
+//Name des Monats in deutscher Sprache (Tool)
 
-        //Object Testing
-            let person2 = {
-                name: "Federico",
-                alter: 24,
-                istStudent: true
-            };
-            console.log(person2.name);
-            console.log(person2.alter);
-            console.log(person2.istStudent);
+const monthName = new Intl.DateTimeFormat('de-DE', { month: 'long' }).format(today);//line 15
 
-    //vergiss nicht die jahr zurückzusetzen, sonst wird es nicht richtig angezeigt
-    document.getElementsByClassName("beispiel1")[0].textContent = "bombe";
-    document.getElementsByClassName("beispiel1")[1].textContent = "bombe";
-    document.getElementById("monat").textContent = "Oktober";
 
-    let jahr = document.getElementsByClassName("jahr");
+//Select Class in HTML and put the time from PC
+document.querySelectorAll(".monat").forEach(element => {
+    element.textContent = monthName;
+});
 
-    jahr.textContent = "2027";
+document.querySelectorAll(".jahr").forEach(element => {
+    element.textContent = year;
+});
+
+
+console.log({today, day, month, year});
+
+
+
+
+// Calculation of the first and last days of the month. Remember : JS beginnt with Sonntag 0 -> Samstag 6
+//ENCONTRAR EL PRIMER Y ULTIMO DIA DEL MES
+
+const firstDay = new Date(year, month - 1, 1); //line 49 //ESTO ES EL !PRIMER NUMERO DEL MES!
+
+const firstWeekday = (firstDay.getDay() + 6) % 7; //ESTO ES EL !NOMBRE DEL DIA! (SONNTAG) del primer dia de la semana
+
+
+const lastDay = new Date(year, month, 0); //line 54
+// 0 represents the last day of the previous month.
+
+const lastWeekday = (lastDay.getDay() + 6) % 7;
+
+console.log({firstDay, firstWeekday, lastDay, lastWeekday});
+
+
+
+
+
+
+
+const calendarStart = new Date(firstDay); //COPIA DEL FIRST DAY //ESTO SIRVE PARA DEFINIR LOS LIMITES
+
+calendarStart.setDate(firstDay.getDate() - firstWeekday);// OPERACION DE RESTA PARA OBTENR
+
+const calendarEnd = new Date(lastDay);//COPIA DEL LAST DAY //ESTO SIRVE PARA DEFINIR LOS LIMITES
+
+calendarEnd.setDate(lastDay.getDate() + (6 - lastWeekday));
+// Adjust the end to the Sunday of the week containing the last day of the month.
+
+console.log({calendarStart, calendarEnd});
+
+
+
+
+
+//RELLENO DE CELDAS
+
+const cells = document.querySelectorAll("#kalender tr:not(.wochentage) td");//ESTO SELECCIONA LAS CELDAS VACIAS (TR) HTML,EXEPTUANDO CLASSE Wochentage, 
+
+const date = new Date(calendarStart);//FECHA QUE AVANZA PARA RELLENAR LAS CELDAS
+
+
+
+//RELLENAR LAS 42 CELDAS
+
+cells.forEach(cell => {
+
+    const dayNumber = date.getDate();//
+
+    //ESTO COMPRUEBA SI PERTENECE AL MES ACTUAL
+    const isCurrentMonth =
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === year;
+
+    // ESTO HACE INVISIBLE LOS DIAS QUE NO PERTENECEN AL MES ACTUAL, PERO SE MUESTRAN EN EL CALENDARIO / SI ES isCurrentMonth es verdero, muestra el dia
+    cell.textContent = isCurrentMonth ? dayNumber : "";
+
+    // RESALTA EL DIA ACTUAL
+    cell.classList.toggle(
+        "heute",
+        date.getDate() === day && isCurrentMonth
+    );
+
+    //AVANZA AL SIGUIENTE DIA
+    date.setDate(date.getDate() + 1);
+});
